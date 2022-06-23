@@ -48,6 +48,15 @@ router.get("/:id", async (req, res) => {
 });
 
 // GET ALL
+router.get("/", async (req, res) => {
+  try {
+    const hotels = await Hotel.find();
+    res.status(200).send(hotels);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // router.get("/", (req, res) => {
 //   res.send("Hello, this is hotels endpoint");
 // });

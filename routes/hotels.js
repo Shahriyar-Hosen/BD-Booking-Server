@@ -36,7 +36,17 @@ router.delete("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
 // GET
+router.get("/:id", async (req, res) => {
+  try {
+    const hotel = await Hotel.findById(req.params.id);
+    res.status(200).send(hotel);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // GET ALL
 // router.get("/", (req, res) => {
 //   res.send("Hello, this is hotels endpoint");

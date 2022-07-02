@@ -19,6 +19,18 @@ app.use("/api/auth", authRoute);
 app.use("/api/hotels", hotelRoute);
 app.use("/api/rooms", roomsRoute);
 app.use("/api/users", usersRoute);
+
+app.use((req, res, next) => {
+  const errStatus = err.status || 500;
+  const errMessage = err.massage || "Something went wrong!";
+  return res.status(errStatus).json({
+    success: false,
+    status: errStatus,
+    message: errMessage,
+    stack: err.stack,
+  });
+});
+
 // ---------------------------
 
 // async await function

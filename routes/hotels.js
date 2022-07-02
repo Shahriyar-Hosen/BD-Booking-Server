@@ -14,6 +14,7 @@ router.post("/", async (req, res) => {
     res.status(500).json(err);
   }
 });
+// ================================
 
 // UPDATE
 router.put("/:id", async (req, res) => {
@@ -26,6 +27,7 @@ router.put("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
+// ================================
 
 // DELETE
 router.delete("/:id", async (req, res) => {
@@ -36,6 +38,7 @@ router.delete("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
+// ================================
 
 // GET
 router.get("/:id", async (req, res) => {
@@ -46,16 +49,24 @@ router.get("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
+// ================================
 
 // GET ALL
-router.get("/", async (req, res) => {
+router.get("/", async (req, res, next) => {
+  const failed = true;
+  const err = new Error();
+  err.status = 404;
+  err.message = "Sorry not found!";
+  if (failed) return next(err);
+
   try {
     const hotels = await Hotel.find();
     res.status(200).send(hotels);
   } catch (err) {
-    res.status(500).json(err);
+    next(err);
   }
 });
+// ================================
 
 // router.get("/", (req, res) => {
 //   res.send("Hello, this is hotels endpoint");

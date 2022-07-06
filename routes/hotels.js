@@ -54,9 +54,6 @@ router.get("/:id", async (req, res) => {
 
 // GET ALL
 router.get("/", async (req, res, next) => {
-  const failed = true;
-  if (failed) return next(createError(401, "You are not authenticated"));
-
   try {
     const hotels = await Hotel.find();
     res.status(200).send(hotels);

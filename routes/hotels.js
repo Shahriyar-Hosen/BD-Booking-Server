@@ -1,5 +1,5 @@
 import express from "express";
-import { createHotel } from "../Controllers/hotel.js";
+import { createHotel, updateHotel } from "../Controllers/hotel.js";
 import Hotel from "../models/Hotel.js";
 
 const router = express.Router();
@@ -9,16 +9,7 @@ router.post("/", createHotel);
 // ================================
 
 // UPDATE
-router.put("/:id", async (req, res) => {
-  try {
-    const updateHotel = await Hotel.findByIdAndUpdate(req.params.id, {
-      $set: req.body,
-    });
-    res.status(200).send(updateHotel);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+router.put("/:id", updateHotel);
 // ================================
 
 // DELETE

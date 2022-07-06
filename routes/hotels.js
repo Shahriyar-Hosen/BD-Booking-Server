@@ -1,5 +1,5 @@
 import express from "express";
-import { createHotel, deleteHotel, updateHotel } from "../Controllers/hotel.js";
+import { createHotel, deleteHotel, getHotel, updateHotel } from "../Controllers/hotel.js";
 import Hotel from "../models/Hotel.js";
 
 const router = express.Router();
@@ -17,14 +17,7 @@ router.delete("/:id", deleteHotel);
 // ================================
 
 // GET
-router.get("/:id", async (req, res) => {
-  try {
-    const hotel = await Hotel.findById(req.params.id);
-    res.status(200).send(hotel);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+router.get("/:id", getHotel);
 // ================================
 
 // GET ALL

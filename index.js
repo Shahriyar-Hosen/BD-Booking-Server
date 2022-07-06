@@ -20,13 +20,13 @@ app.use("/api/hotels", hotelRoute);
 app.use("/api/rooms", roomsRoute);
 app.use("/api/users", usersRoute);
 
-app.use((req, res, next) => {
-  const errStatus = err.status || 500;
-  const errMessage = err.massage || "Something went wrong!";
-  return res.status(errStatus).json({
+app.use((err, req, res, next) => {
+  const errorStatus = err.status || 500;
+  const errorMessage = err.message || "Something went wrong!";
+  return res.status(errorStatus).json({
     success: false,
-    status: errStatus,
-    message: errMessage,
+    status: errorStatus,
+    message: errorMessage,
     stack: err.stack,
   });
 });

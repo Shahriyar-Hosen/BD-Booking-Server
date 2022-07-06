@@ -1,3 +1,6 @@
+import Hotel from "../models/Hotel";
+
+// CREATE
 export const createHotel = async (req, res, next) => {
   const newHotel = new Hotel(req.body);
 
@@ -8,7 +11,9 @@ export const createHotel = async (req, res, next) => {
     next(err);
   }
 };
+// ================================
 
+// UPDATE
 export const updateHotel = async (req, res, next) => {
   try {
     const updatedHotel = await Hotel.findByIdAndUpdate(
@@ -21,7 +26,9 @@ export const updateHotel = async (req, res, next) => {
     next(err);
   }
 };
+// ================================
 
+// DELETE
 export const deleteHotel = async (req, res, next) => {
   try {
     await Hotel.findByIdAndDelete(req.params.id);
@@ -30,7 +37,9 @@ export const deleteHotel = async (req, res, next) => {
     next(err);
   }
 };
+// ================================
 
+// GET
 export const getHotel = async (req, res, next) => {
   try {
     const hotel = await Hotel.findById(req.params.id);
@@ -39,7 +48,9 @@ export const getHotel = async (req, res, next) => {
     next(err);
   }
 };
+// ================================
 
+// GET ALL
 export const getHotels = async (req, res, next) => {
   const { min, max, ...others } = req.query;
   try {
@@ -52,3 +63,4 @@ export const getHotels = async (req, res, next) => {
     next(err);
   }
 };
+// ================================

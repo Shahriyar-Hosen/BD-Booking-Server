@@ -20,6 +20,7 @@ app.use("/api/hotels", hotelRoute);
 app.use("/api/rooms", roomsRoute);
 app.use("/api/users", usersRoute);
 
+// Error Message
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
   const errorMessage = err.message || "Something went wrong!";
@@ -30,6 +31,7 @@ app.use((err, req, res, next) => {
     stack: err.stack,
   });
 });
+// ================================
 
 // ---------------------------
 

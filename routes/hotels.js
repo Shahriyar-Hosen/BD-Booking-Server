@@ -1,19 +1,20 @@
 import express from "express";
 import { createHotel, deleteHotel, getHotel, getHotels, updateHotel } from "../Controllers/hotel.js";
 import Hotel from "../models/Hotel.js";
+import { verifyAdmin } from "../utils/VerifyToken.js";
 
 const router = express.Router();
 
-// CREATE
-router.post("/", createHotel);
+//CREATE
+router.post("/", verifyAdmin, createHotel);
 // ================================
 
-// UPDATE
-router.put("/:id", updateHotel);
+//UPDATE
+router.put("/:id", verifyAdmin, updateHotel);
 // ================================
 
-// DELETE
-router.delete("/:id", deleteHotel);
+//DELETE
+router.delete("/:id", verifyAdmin, deleteHotel);
 // ================================
 
 // GET
@@ -24,8 +25,6 @@ router.get("/:id", getHotel);
 router.get("/", getHotels);
 // ================================
 
-// router.get("/", (req, res) => {
-//   res.send("Hello, this is hotels endpoint");
-// });
+
 
 export default router;

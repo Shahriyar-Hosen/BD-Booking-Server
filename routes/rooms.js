@@ -8,4 +8,8 @@ const router = express.Router();
 router.post("/:hotelid", verifyAdmin, createRoom);
 // ===============================================
 
+//UPDATE
+router.put("/availability/:id", updateRoomAvailability);
+// =====================================================
+
 export default router;

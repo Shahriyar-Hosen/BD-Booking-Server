@@ -1,8 +1,8 @@
 import User from "../models/User.js";
 import { createError } from "../utils/Error.js";
-// import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
+// Register
 export const register = async (req, res, next) => {
   try {
     const newUser = new User({
@@ -17,7 +17,9 @@ export const register = async (req, res, next) => {
     next(err);
   }
 };
+// ===================================================
 
+// Login
 export const login = async (req, res, next) => {
   try {
     const user = await User.findOne({ username: req.body.username });
@@ -45,3 +47,4 @@ export const login = async (req, res, next) => {
     next(err);
   }
 };
+// ==============================================================
